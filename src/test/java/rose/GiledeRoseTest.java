@@ -55,5 +55,18 @@ public class GiledeRoseTest {
         Assertions.assertEquals(actuallyQuality, production.getActuallyQuality());
     }
     
+    @DisplayName("后台门票 演出前[10,5]天，每天上涨2点 && 演出前5天，每天上涨3点 （共涨5天）")
+    @ParameterizedTest
+    @CsvSource({
+            "26,2020-06-01,2020-06-09,10",
+            "23,2020-06-02,2020-06-09,10",
+    })
+    public void should_pass_increase_2_Point_before_expired_5(int actuallyQuality,
+                                                              LocalDate createDay,
+                                                              LocalDate showDay,
+                                                              int totalQuality) throws ProductionException {
+        Pass pass = new Pass(createDay, showDay, totalQuality);
+        Assertions.assertEquals(actuallyQuality, pass.getActuallyQuality());
+    }
     
 }
