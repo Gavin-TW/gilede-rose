@@ -17,6 +17,10 @@ public class Pass extends Production {
     @Override
     public long getActuallyQuality() {
         long days = LocalDate.now().toEpochDay() - this.getCreateDay().toEpochDay();
-        return LocalDate.now().isBefore(showDay) ? this.getQuality() + (days - 5 > 0 ? 10 + (days - 5) * 3 : days * 2) : 0;
+        return LocalDate.now().isBefore(showDay) ? this.getQuality() + getPassAddPoint(days) : 0;
+    }
+    
+    private long getPassAddPoint(long days) {
+        return days - 5 > 0 ? 10 + (days - 5) * 3 : days * 2;
     }
 }
