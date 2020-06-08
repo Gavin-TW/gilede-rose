@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public class Pass extends Production {
     
-    private LocalDate showDay;
+    private final LocalDate showDay;
     
     public Pass(LocalDate createDay, LocalDate showDay, int quality) throws ProductionException {
         super(createDay, quality);
